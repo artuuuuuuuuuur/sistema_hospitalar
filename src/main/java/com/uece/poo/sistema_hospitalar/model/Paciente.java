@@ -1,4 +1,4 @@
-package classe;
+package com.uece.poo.sistema_hospitalar.model;
 
 public class Paciente extends Usuario {
     private int idade;

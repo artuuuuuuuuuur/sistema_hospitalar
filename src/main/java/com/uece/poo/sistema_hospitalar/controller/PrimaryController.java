@@ -1,6 +1,8 @@
-package com.uece.poo.sistema_hospitalar;
+package com.uece.poo.sistema_hospitalar.controller;
 
 import java.io.IOException;
+
+import com.uece.poo.sistema_hospitalar.App;
 import javafx.fxml.FXML;
 
 public class PrimaryController {

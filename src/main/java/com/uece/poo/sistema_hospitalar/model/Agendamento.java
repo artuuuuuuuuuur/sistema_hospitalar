@@ -1,4 +1,4 @@
-package classe;
+package com.uece.poo.sistema_hospitalar.model;
 
 import java.time.LocalDate;
 
