@@ -59,6 +59,12 @@ public class Medico extends Usuario {
         }
     }
 
+    public void alterarDados(String nome, String especialidade, String planoSaudeAtendimento){
+        setNome(nome);
+        setEspecialidade(especialidade);
+        setPlanoSaudeAtendimento(planoSaudeAtendimento);
+    }
+
     public static class Avaliacao {
         private int estrelas;
         private String texto;

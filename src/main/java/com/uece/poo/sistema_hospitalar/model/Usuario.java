@@ -1,10 +1,10 @@
 package com.uece.poo.sistema_hospitalar.model;
 
 public abstract class Usuario {
-    private int id;
-    private String nome;
-    private String login;
-    private String senha;
+    protected int id;
+    protected String nome;
+    protected String login;
+    protected String senha;
 
  
     public Usuario(int id, String nome, String login, String senha) {
@@ -48,7 +48,14 @@ public abstract class Usuario {
     }
 
 
-    public abstract boolean autenticar(String login, String senha);
+    public boolean autenticar(String loginX, String senhaX){
+        if(loginX == login && senhaX == senha){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 
     @Override
     public String toString() {
