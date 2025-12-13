@@ -6,29 +6,79 @@ public class Consulta {
     private Medico medico;
     private Paciente paciente;
     private LocalDate data;
+
+    private StatusConsulta status;
+
     private String descricao;
-    private boolean realizada;
     private double valor;
 
-    public Consulta(Medico medico, Paciente paciente, LocalDate data){
+    public Consulta(Medico medico, Paciente paciente, LocalDate data, StatusConsulta status){
         this.medico=medico;
         this.paciente=paciente;
         this.data=data;
-        this.realizada = false;
+        this.status = status;
     }
 
-    public void realizarConsulta(String descricao, double valor){
-        if(paciente.temPlano() == true){
-            valor = 0;
+    public void realizar(String descricao, double valorBase){
+        if(status != StatusConsulta.AGENDADA){
+            throw new IllegalStateException("Consulta não pode ser realizada");
+        }
+        this.descricao=descricao;
+
+        if(paciente.temPlano()){
+            this.valor = 0;
         }
         else{
-            this.valor=valor;
+            this.valor=valorBase;
         }
-        this.descricao = descricao;
-        this.realizada = true;
+
+        this.status = StatusConsulta.REALIZADA;
+    }
+
+    public void cancelar(){
+        if(status == StatusConsulta.REALIZADA){
+            throw new IllegalStateException("Consulta realizada não pode ser cancelada");
+        }
+        this.status = StatusConsulta.CANCELADA;
+    }
+// funções de checagem de status
+    public boolean estaAgendada(){
+        return status == StatusConsulta.AGENDADA;
+    }
+
+    public boolean estaEmEspera(){
+        return status == StatusConsulta.EM_ESPERA;
     }
 
     public boolean isRealizada(){
-        return realizada;
+        return status == StatusConsulta.REALIZADA;
+    }
+
+    public boolean estaCancelada(){
+        return status == StatusConsulta.CANCELADA;
+    }
+// getters de atributos da Consulta
+    public Medico getMedico(){
+        return medico;
+    }
+
+    public Paciente getPaciente(){
+        return paciente;
+    }
+
+    public LocalDate getData(){
+        return data;
+    }
+
+    public StatusConsulta getStatus(){
+        return status;
+    }
+
+    public String getDescricao(){
+        return descricao;
+    }
+
+    public double getValor(){
+        return valor;
     }
 }
