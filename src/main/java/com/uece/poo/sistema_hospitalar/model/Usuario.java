@@ -48,13 +48,8 @@ public abstract class Usuario {
     }
 
 
-    public boolean autenticar(String loginX, String senhaX){
-        if(loginX == login && senhaX == senha){
-            return true;
-        }
-        else{
-            return false;
-        }
+    public boolean autenticar(String login, String senha){
+        return this.login.equals(login) && this.senha.equals(senha);
     }
 
     @Override
