@@ -26,6 +26,10 @@ public class Paciente extends Usuario {
         this.planoSaude = planoSaude;
     }
 
+    public boolean temPlano(){
+        return !planoSaude.equalsIgnoreCase("NAO_TENHO");
+    }
+
     public void alterarDados(String nome, int idade, String planoSaude) {
         setNome(nome);
         setIdade(idade);

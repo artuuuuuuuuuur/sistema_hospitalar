@@ -5,16 +5,14 @@ import java.util.List;
 
 public class Medico extends Usuario {
     private String especialidade;
-    private String planoSaudeAtendimento;
-    private double avaliacaoMedia;
+    private List<String> planosAtendidos;
     private List<Avaliacao> avaliacoes;
-
-    public Medico(int id, String nome, String login, String senha, String especialidade, String planoSaudeAtendimento) {
+    
+    public Medico(int id, String nome, String login, String senha, String especialidade, List<String> planosAtendidos) {
         super(id, nome, login, senha);
         this.especialidade = especialidade;
-        this.planoSaudeAtendimento = planoSaudeAtendimento;
+        this.planosAtendidos = planosAtendidos;
         this.avaliacoes = new ArrayList<>();
-        this.avaliacaoMedia = 0.0;
     }
 
     public String getEspecialidade() {
@@ -25,73 +23,44 @@ public class Medico extends Usuario {
         this.especialidade = especialidade;
     }
 
-    public String getPlanoSaudeAtendimento() {
-        return planoSaudeAtendimento;
+    public List<String> getPlanosAtendidos() {
+        return planosAtendidos;
     }
 
-    public void setPlanoSaudeAtendimento(String planoSaudeAtendimento) {
-        this.planoSaudeAtendimento = planoSaudeAtendimento;
+    public void adicionarPlano(String plano){
+        planosAtendidos.add(plano);
     }
 
-    public double getAvaliacaoMedia() {
-        return avaliacaoMedia;
+    public void removerPlano(String plano){
+        planosAtendidos.remove(plano);
     }
-
+    
+    public boolean atendePlano(String plano){
+        return planosAtendidos.contains(plano);
+    }
+    
     public List<Avaliacao> getAvaliacoes() {
         return avaliacoes;
     }
 
-    public void adicionarAvaliacao(int estrelas, String texto) {
-        Avaliacao novaAvaliacao = new Avaliacao(estrelas, texto);
+    public void adicionarAvaliacao(Avaliacao novaAvaliacao) {
         avaliacoes.add(novaAvaliacao);
-        calcularAvaliacaoMedia();
+        System.out.println("Avaliação média: "+ calcularAvaliacaoMedia());
     }
 
-    private void calcularAvaliacaoMedia() {
-        if (!avaliacoes.isEmpty()) {
-            int totalEstrelas = 0;
-            for (Avaliacao a : avaliacoes) {
-                totalEstrelas += a.getEstrelas();
-            }
-            this.avaliacaoMedia = (double) totalEstrelas / avaliacoes.size();
-        } else {
-            this.avaliacaoMedia = 0.0;
+    private double calcularAvaliacaoMedia() {
+        if(avaliacoes.isEmpty()){
+            return 0;
         }
+        int soma =0;
+        for(Avaliacao a : avaliacoes){
+            soma += a.getEstrelas();
+        }
+        return (double) soma/avaliacoes.size();
     }
 
-    public void alterarDados(String nome, String especialidade, String planoSaudeAtendimento){
+    public void alterarDados(String nome, String especialidade){
         setNome(nome);
         setEspecialidade(especialidade);
-        setPlanoSaudeAtendimento(planoSaudeAtendimento);
-    }
-
-    public static class Avaliacao {
-        private int estrelas;
-        private String texto;
-
-        public Avaliacao(int estrelas, String texto) {
-            if (estrelas < 1) estrelas = 1;
-            if (estrelas > 5) estrelas = 5;
-            this.estrelas = estrelas;
-            this.texto = texto;
-        }
-
-        public int getEstrelas() {
-            return estrelas;
-        }
-
-        public void setEstrelas(int estrelas) {
-            if (estrelas < 1) estrelas = 1;
-            if (estrelas > 5) estrelas = 5;
-            this.estrelas = estrelas;
-        }
-
-        public String getTexto() {
-            return texto;
-        }
-
-        public void setTexto(String texto) {
-            this.texto = texto;
-        }
     }
 }

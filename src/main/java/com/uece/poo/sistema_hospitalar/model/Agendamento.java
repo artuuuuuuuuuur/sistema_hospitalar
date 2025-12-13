@@ -1,97 +1,37 @@
 package com.uece.poo.sistema_hospitalar.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
-public abstract class Agendamento {
-    protected int id;
-    protected LocalDate data;
-    protected String status;
-    protected Paciente paciente;
-    protected Medico medico;
+public class Agendamento{
+    private Medico medico;
+    private LocalDate data;
+    private List<Paciente> pacientes;
+    private List<Paciente> listaEspera;
+    private static final int limite_diario = 3;
 
-   
-    public Agendamento(int id, LocalDate data, Paciente paciente, Medico medico) {
-        this.id = id;
-        this.data = data;
-        this.paciente = paciente;
-        this.medico = medico;
-        this.status = "Pendente"; 
+    public Agendamento(Medico medico, LocalDate data){
+        this.medico=medico;
+        this.data=data;
+        this.pacientes = new ArrayList<>();
+        this.listaEspera = new ArrayList<>();
     }
 
-
-    public int getId() {
-        return id;
+    public void agendar(Paciente p){
+        if(pacientes.size() < limite_diario){
+            pacientes.add(p);
+        }
+        else{
+            listaEspera.add(p);
+        }
     }
 
-    public LocalDate getData() {
-        return data;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public Paciente getPaciente() {
-        return paciente;
-    }
-
-    public Medico getMedico() {
-        return medico;
-    }
-
-   
-    public abstract void reservar();
-
-    public abstract void cancelar();
-}
-
-
-class AgendamentoConsulta extends Agendamento {
-
-    public AgendamentoConsulta(int id, LocalDate data, Paciente paciente, Medico medico) {
-        super(id, data, paciente, medico);
-    }
-
-    @Override
-    public void reservar() {
-        this.status = "Reservado";
-        System.out.println("Consulta reservada para o paciente: " + paciente.getNome());
-    }
-
-    @Override
-    public void cancelar() {
-        this.status = "Cancelado";
-        System.out.println("Consulta cancelada para o paciente: " + paciente.getNome());
-    }
-}
-
-
-class AgendamentoExame extends Agendamento {
-    private String tipoExame;
-
-    public AgendamentoExame(int id, LocalDate data, Paciente paciente, Medico medico, String tipoExame) {
-        super(id, data, paciente, medico);
-        this.tipoExame = tipoExame;
-    }
-
-    // Getter e Setter para o tipo de exame
-    public String getTipoExame() {
-        return tipoExame;
-    }
-
-    public void setTipoExame(String tipoExame) {
-        this.tipoExame = tipoExame;
-    }
-
-    @Override
-    public void reservar() {
-        this.status = "Reservado";
-        System.out.println("Exame de " + tipoExame + " reservado para o paciente: " + paciente.getNome());
-    }
-
-    @Override
-    public void cancelar() {
-        this.status = "Cancelado";
-        System.out.println("Exame de " + tipoExame + " cancelado para o paciente: " + paciente.getNome());
+    public void cancelar(Paciente p){
+        if(pacientes.remove(p)){
+            if(!listaEspera.isEmpty()){
+                pacientes.add(listaEspera.remove(0));
+            }
+        }
     }
 }
