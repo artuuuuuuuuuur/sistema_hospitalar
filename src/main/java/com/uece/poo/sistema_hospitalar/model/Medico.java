@@ -45,10 +45,9 @@ public class Medico extends Usuario {
 
     public void adicionarAvaliacao(Avaliacao novaAvaliacao) {
         avaliacoes.add(novaAvaliacao);
-        System.out.println("Avaliação média: "+ calcularAvaliacaoMedia());
     }
 
-    private double calcularAvaliacaoMedia() {
+    public double calcularAvaliacaoMedia() {
         if(avaliacoes.isEmpty()){
             return 0;
         }

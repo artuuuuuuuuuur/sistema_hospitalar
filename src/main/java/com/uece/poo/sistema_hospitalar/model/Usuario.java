@@ -1,12 +1,11 @@
 package com.uece.poo.sistema_hospitalar.model;
 
-public abstract class Usuario {
+public class Usuario {
     protected int id;
     protected String nome;
     protected String login;
     protected String senha;
-
- 
+    
     public Usuario(int id, String nome, String login, String senha) {
         this.id = id;
         this.nome = nome;
