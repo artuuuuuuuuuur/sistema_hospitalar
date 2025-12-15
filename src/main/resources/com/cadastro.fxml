@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="700.0" style="-fx-background-color: #0B3C5D;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox layoutX="218.0" layoutY="117.0" prefHeight="263.0" prefWidth="379.0">
+         <children>
+            <HBox prefHeight="54.0" prefWidth="379.0">
+               <children>
+                  <Label text="NOME: " textFill="#f5eded">
+                     <font>
+                        <Font name="SansSerif Bold Italic" size="15.0" />
+                     </font>
+                  </Label>
+                  <PasswordField prefHeight="24.0" prefWidth="173.0" promptText="NOME COMPLETO">
+                     <font>
+                        <Font name="SansSerif Italic" size="13.0" />
+                     </font>
+                  </PasswordField>
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="379.0">
+               <children>
+                  <Label text="IDENTIFICAÇÃO: " textFill="#f5eded">
+                     <font>
+                        <Font name="SansSerif Bold Italic" size="15.0" />
+                     </font>
+                  </Label>
+                  <PasswordField prefHeight="24.0" prefWidth="102.0">
+                     <font>
+                        <Font name="SansSerif Italic" size="13.0" />
+                     </font>
+                  </PasswordField>
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="163.0" prefHeight="49.0" prefWidth="374.0">
+               <children>
+                  <Label text="SENHA: " textFill="#f5eded">
+                     <font>
+                        <Font name="SansSerif Bold Italic" size="15.0" />
+                     </font>
+                  </Label>
+                  <PasswordField>
+                     <font>
+                        <Font name="SansSerif Italic" size="13.0" />
+                     </font>
+                  </PasswordField>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Button layoutX="268.0" layoutY="395.0" mnemonicParsing="false" text="FINALIZAR CADASTRO">
+         <font>
+            <Font name="SansSerif Bold Italic" size="13.0" />
+         </font>
+      </Button>
+      <Label layoutX="273.0" layoutY="57.0" prefHeight="27.0" prefWidth="154.0" text="CADASTRO" textFill="#fffdfd">
+         <font>
+            <Font name="SansSerif Bold Italic" size="24.0" />
+         </font>
+      </Label>
+      <Button layoutX="36.0" layoutY="494.0" mnemonicParsing="false" text="VOLTAR" />
+   </children>
+</AnchorPane>

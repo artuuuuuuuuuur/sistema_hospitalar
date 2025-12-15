@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="700.0" style="-fx-background-color: #0B3C5D;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane layoutX="184.0" layoutY="104.0" prefHeight="272.0" prefWidth="332.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <Label layoutX="112.0" layoutY="56.0" text="ATENÇÃO!!!!" textFill="RED">
+               <font>
+                  <Font name="SansSerif Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutY="112.0" prefHeight="21.0" prefWidth="336.0" text="TEM CERTEZA QUE DESEJA CONFIRMAR ISSO?" textFill="RED">
+               <font>
+                  <Font name="SansSerif Bold" size="14.0" />
+               </font>
+            </Label>
+            <Button layoutX="91.0" layoutY="203.0" mnemonicParsing="false" text="SIM">
+               <font>
+                  <Font name="SansSerif Regular" size="13.0" />
+               </font>
+            </Button>
+            <Button layoutX="189.0" layoutY="203.0" mnemonicParsing="false" text="NÃO">
+               <font>
+                  <Font name="SansSerif Regular" size="13.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
