@@ -10,6 +10,7 @@ import java.util.List;
 
 public class PacienteService {
     private static final String MEDICOS = "src/java/com/uece/poo/sistema_hospitalar/dados/medicos.csv";
+    private static final String PACIENTES = "src/java/com/uece/poo/sistema_hospitalar/dados/pacientes.csv";
 
     public List<Medico> listarMedicos(Paciente paciente){
         List<String[]> dados = CSVUtil.ler(MEDICOS);
@@ -23,5 +24,38 @@ public class PacienteService {
             }
         }
         return resultado;
+    }
+
+    public void atualizar(Paciente paciente){
+        List<String[]> dados = CSVUtil.ler(PACIENTES);
+        List<String> linhas = new ArrayList<>();
+
+        for(String[] l : dados){
+            if(l[1].equals(paciente.getLogin())){
+                linhas.add(paciente.toCSV());
+            }
+            else{
+                linhas.add(String.join(";", l));
+            }
+        }
+        CSVUtil.escrever(PACIENTES, linhas);
+    }
+
+    public void cadastrar(Paciente paciente){
+        List<String[]> dados = CSVUtil.ler(PACIENTES);
+        List<String> linhas = new ArrayList<>();
+        boolean existe = false;
+
+        for(String[] l : dados){
+            if(l[1].equals(paciente.getLogin())){
+                existe = true;
+            }
+            linhas.add(String.join(";", l));
+        }
+        if(!existe){
+            linhas.add(paciente.toCSV());
+        }
+
+        CSVUtil.escrever(PACIENTES, linhas);
     }
 }

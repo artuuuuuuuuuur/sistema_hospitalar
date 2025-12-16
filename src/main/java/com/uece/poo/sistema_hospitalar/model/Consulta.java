@@ -1,6 +1,7 @@
 package com.uece.poo.sistema_hospitalar.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Consulta {
     private Medico medico;
@@ -17,6 +18,13 @@ public class Consulta {
         this.paciente=paciente;
         this.data=data;
         this.status = status;
+    }
+
+    public static Consulta fromCSV(String[] l){
+        Medico medico = new Medico(l[0], "", "", "", new ArrayList<>());
+        Paciente paciente = new Paciente(l[1], "", "", 0, "");
+
+        return new Consulta(medico, paciente, LocalDate.parse(l[2]), StatusConsulta.valueOf(l[3]));
     }
 
     public void realizar(String descricao, double valorBase){
@@ -80,5 +88,10 @@ public class Consulta {
 
     public double getValor(){
         return valor;
+    }
+
+    // Método para passar a Consulta pro CSV
+    public String toCSV(){
+        return medico.getNome()+";"+paciente.getNome()+";"+data.toString()+";"+status.name();
     }
 }

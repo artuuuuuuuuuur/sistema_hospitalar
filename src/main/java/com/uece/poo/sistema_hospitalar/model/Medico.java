@@ -1,6 +1,7 @@
 package com.uece.poo.sistema_hospitalar.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Medico extends Usuario {
@@ -13,6 +14,19 @@ public class Medico extends Usuario {
         this.especialidade = especialidade;
         this.planosAtendidos = planosAtendidos;
         this.avaliacoes = new ArrayList<>();
+    }
+
+    public static Medico fromCSV(String[] l){
+        String nome = l[0];
+        String login = l[1];
+        String senha = l[2];
+        String especialidade = l[3];
+
+        List<String> planos = new ArrayList<>();
+        if(!l[4].isBlank()){
+            planos = Arrays.asList(l[4].split(","));
+        }
+        return new Medico(nome, login, senha, especialidade, planos);
     }
 
     public String getEspecialidade() {
@@ -43,10 +57,6 @@ public class Medico extends Usuario {
         return avaliacoes;
     }
 
-    public void adicionarAvaliacao(Avaliacao novaAvaliacao) {
-        avaliacoes.add(novaAvaliacao);
-    }
-
     public double calcularAvaliacaoMedia() {
         if(avaliacoes.isEmpty()){
             return 0;
@@ -58,6 +68,11 @@ public class Medico extends Usuario {
         return (double) soma/avaliacoes.size();
     }
 
+    public void adicionarAvaliacao(Avaliacao novaAvaliacao) {
+        avaliacoes.add(novaAvaliacao);
+        System.out.println("Avaliação média: " + calcularAvaliacaoMedia());
+    }
+    
     public void alterarDados(String nome, String especialidade){
         setNome(nome);
         setEspecialidade(especialidade);

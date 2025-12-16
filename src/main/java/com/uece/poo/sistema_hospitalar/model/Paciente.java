@@ -10,6 +10,16 @@ public class Paciente extends Usuario {
         this.planoSaude = planoSaude;
     }
 
+    public static Paciente fromCSV(String[] l){
+        String nome = l[0];
+        String login = l[1];
+        String senha = l[2];
+        String planoSaude = l[4];
+
+        int idade = Integer.parseInt(l[3]);
+        return new Paciente(nome, login, senha, idade, planoSaude);
+    }
+
     public int getIdade() {
         return idade;
     }
