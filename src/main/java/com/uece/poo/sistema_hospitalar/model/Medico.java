@@ -8,8 +8,8 @@ public class Medico extends Usuario {
     private List<String> planosAtendidos;
     private List<Avaliacao> avaliacoes;
     
-    public Medico(int id, String nome, String login, String senha, String especialidade, List<String> planosAtendidos) {
-        super(id, nome, login, senha);
+    public Medico(String nome, String login, String senha, String especialidade, List<String> planosAtendidos) {
+        super(nome, login, senha);
         this.especialidade = especialidade;
         this.planosAtendidos = planosAtendidos;
         this.avaliacoes = new ArrayList<>();
@@ -61,5 +61,10 @@ public class Medico extends Usuario {
     public void alterarDados(String nome, String especialidade){
         setNome(nome);
         setEspecialidade(especialidade);
+    }
+
+    public String toCSV(){
+        String planoString = String.join(",", planosAtendidos);
+        return nome+";"+login+";"+senha+";"+especialidade+";"+planoString;
     }
 }

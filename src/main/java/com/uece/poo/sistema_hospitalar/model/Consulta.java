@@ -21,7 +21,7 @@ public class Consulta {
 
     public void realizar(String descricao, double valorBase){
         if(status != StatusConsulta.AGENDADA){
-            throw new IllegalStateException("Consulta não pode ser realizada");
+            throw new IllegalStateException("Consulta não está agendada e não pode ser realizada");
         }
         this.descricao=descricao;
 

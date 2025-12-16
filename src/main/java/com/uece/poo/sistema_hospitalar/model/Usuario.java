@@ -1,25 +1,19 @@
 package com.uece.poo.sistema_hospitalar.model;
 
 public class Usuario {
-    protected int id;
     protected String nome;
     protected String login;
     protected String senha;
     
-    public Usuario(int id, String nome, String login, String senha) {
-        this.id = id;
+    public Usuario(String nome, String login, String senha) {
         this.nome = nome;
         this.login = login;
         this.senha = senha;
     }
 
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public Usuario(String login, String senha){
+        this.login=login;
+        this.senha=senha;
     }
 
     public String getNome() {
@@ -54,7 +48,6 @@ public class Usuario {
     @Override
     public String toString() {
         return "Usuario{" +
-                "id=" + id +
                 ", nome='" + nome + '\'' +
                 ", login='" + login + '\'' +
                 '}';

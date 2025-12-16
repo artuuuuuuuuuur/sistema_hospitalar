@@ -4,8 +4,8 @@ public class Paciente extends Usuario {
     private int idade;
     private String planoSaude;
 
-    public Paciente(int id, String nome, String login, String senha, int idade, String planoSaude) {
-        super(id, nome, login, senha);
+    public Paciente(String nome, String login, String senha, int idade, String planoSaude) {
+        super(nome, login, senha);
         this.idade = idade;
         this.planoSaude = planoSaude;
     }
@@ -34,5 +34,10 @@ public class Paciente extends Usuario {
         setNome(nome);
         setIdade(idade);
         setPlanoSaude(planoSaude);
+    }
+
+    public String toCSV(){
+        String idadeString = Integer.toString(idade);
+        return nome+";"+login+";"+senha+";"+idadeString+";"+planoSaude;
     }
 }
