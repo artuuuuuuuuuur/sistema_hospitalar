@@ -1,5 +1,8 @@
 package com.uece.poo.sistema_hospitalar.model;
 
+import com.uece.poo.sistema_hospitalar.model.usuario.Medico;
+import com.uece.poo.sistema_hospitalar.model.usuario.Paciente;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -92,6 +95,6 @@ public class Consulta {
 
     // Método para passar a Consulta pro CSV
     public String toCSV(){
-        return medico.getNome()+";"+paciente.getNome()+";"+data.toString()+";"+status.name();
+        return medico.getNome()+","+paciente.getNome()+","+data.toString()+","+status.name();
     }
 }

@@ -1,7 +1,7 @@
 package com.uece.poo.sistema_hospitalar.service;
 
-import com.uece.poo.sistema_hospitalar.model.Medico;
-import com.uece.poo.sistema_hospitalar.model.Paciente;
+import com.uece.poo.sistema_hospitalar.model.usuario.Medico;
+import com.uece.poo.sistema_hospitalar.model.usuario.Paciente;
 import com.uece.poo.sistema_hospitalar.util.CSVUtil;
 
 import java.util.List;
@@ -9,8 +9,8 @@ import java.util.Arrays;
 import java.util.ArrayList;
 
 public class LoginService {
-    private static final String MEDICOS = "src/java/com/uece/poo/sistema_hospitalar/dados/medicos.csv";
-    private static final String PACIENTES = "src/java/com/uece/poo/sistema_hospitalar/dados/pacientes.csv";
+    private static final String MEDICOS = "src/main/resources/com/uece/poo/sistema_hospitalar/dados/medicos.csv";
+    private static final String PACIENTES = "src/main/resources/com/uece/poo/sistema_hospitalar/dados/pacientes.csv";
 
     public Medico loginMedico(String login, String senha){
         List<String[]> dados = CSVUtil.ler(MEDICOS);

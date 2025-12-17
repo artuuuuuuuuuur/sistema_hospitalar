@@ -1,4 +1,6 @@
-package com.uece.poo.sistema_hospitalar.model;
+package com.uece.poo.sistema_hospitalar.model.usuario;
+
+import com.uece.poo.sistema_hospitalar.model.Avaliacao;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,8 +11,8 @@ public class Medico extends Usuario {
     private List<String> planosAtendidos;
     private List<Avaliacao> avaliacoes;
     
-    public Medico(String nome, String login, String senha, String especialidade, List<String> planosAtendidos) {
-        super(nome, login, senha);
+    public Medico(String nome, String id, String senha, String especialidade, List<String> planosAtendidos) {
+        super(nome, id, senha);
         this.especialidade = especialidade;
         this.planosAtendidos = planosAtendidos;
         this.avaliacoes = new ArrayList<>();
@@ -48,7 +50,11 @@ public class Medico extends Usuario {
     public void removerPlano(String plano){
         planosAtendidos.remove(plano);
     }
-    
+
+    public void setPlanosAtendidos(List<String> planosAtendidos) {
+        this.planosAtendidos = planosAtendidos;
+    }
+
     public boolean atendePlano(String plano){
         return planosAtendidos.contains(plano);
     }
@@ -79,7 +85,7 @@ public class Medico extends Usuario {
     }
 
     public String toCSV(){
-        String planoString = String.join(",", planosAtendidos);
-        return nome+";"+login+";"+senha+";"+especialidade+";"+planoString;
+        String planoString = String.join("|", planosAtendidos);
+        return nome+","+ id +","+senha+","+especialidade+","+planoString;
     }
 }

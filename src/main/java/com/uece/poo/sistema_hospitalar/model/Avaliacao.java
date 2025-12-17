@@ -1,5 +1,7 @@
 package com.uece.poo.sistema_hospitalar.model;
 
+import com.uece.poo.sistema_hospitalar.model.usuario.Medico;
+
 import java.util.ArrayList;
 
 public class Avaliacao {
@@ -45,6 +47,6 @@ public class Avaliacao {
 
     public String toCSV(){
         String estrelasString = Integer.toString(estrelas);
-        return medico.getNome()+";"+estrelasString+";"+texto;
+        return medico.getNome()+","+estrelasString+","+texto;
     }
 }

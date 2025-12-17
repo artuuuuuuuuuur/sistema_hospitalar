@@ -1,11 +1,11 @@
-package com.uece.poo.sistema_hospitalar.model;
+package com.uece.poo.sistema_hospitalar.model.usuario;
 
 public class Paciente extends Usuario {
     private int idade;
     private String planoSaude;
 
-    public Paciente(String nome, String login, String senha, int idade, String planoSaude) {
-        super(nome, login, senha);
+    public Paciente(String nome, String id, String senha, int idade, String planoSaude) {
+        super(nome, id, senha);
         this.idade = idade;
         this.planoSaude = planoSaude;
     }
@@ -37,7 +37,7 @@ public class Paciente extends Usuario {
     }
 
     public boolean temPlano(){
-        return !planoSaude.equalsIgnoreCase("NAO_TENHO");
+        return !planoSaude.equalsIgnoreCase("Não tenho");
     }
 
     public void alterarDados(String nome, int idade, String planoSaude) {
@@ -48,6 +48,6 @@ public class Paciente extends Usuario {
 
     public String toCSV(){
         String idadeString = Integer.toString(idade);
-        return nome+";"+login+";"+senha+";"+idadeString+";"+planoSaude;
+        return nome+","+ id +","+senha+","+idadeString+","+planoSaude;
     }
 }

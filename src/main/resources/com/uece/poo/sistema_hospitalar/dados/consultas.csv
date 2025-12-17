@@ -1,8 +1,4 @@
-João Marcos;Roberta;2025-12-16;AGENDADA
-João Marcos;Roberta;2025-12-16;AGENDADA
-João Marcos;Roberta;2025-12-16;AGENDADA
-João Marcos;Roberta;2025-12-16;EM_ESPERA
-João Marcos;Roberta;2025-12-16;EM_ESPERA
-João Marcos;Roberta;2025-12-16;EM_ESPERA
-João Marcos;Roberta;2025-12-16;EM_ESPERA
-João Marcos;Roberta;2025-12-16;EM_ESPERA
+MÉDICO,PACIENTE,DATA,STATUS
+aadss,sdad,2025-12-19,AGENDADA
+AAAA,sdad,2026-01-03,REALIZADA
+João,sdad,2025-12-12,AGENDADA

@@ -1,1 +1,4 @@
-João Marcos;123;000;Psicologo;Unimed
+NOME,ID,SENHA,ESPECIALIDADE,PLANOS
+João,45517,dudsid,Ortopedia,Normal|Ortodôntico
+Fernando,12345,fjndso,Cardiologia,Deluxe
+José,12534,shdsjo,Pediatria,Normal

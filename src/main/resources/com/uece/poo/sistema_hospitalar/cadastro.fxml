@@ -3,14 +3,15 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="700.0" style="-fx-background-color: #0B3C5D;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="cadastroAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="462.0" prefWidth="700.0" style="-fx-background-color: #0B3C5D;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uece.poo.sistema_hospitalar.controller.TelaDeCadastroController">
    <children>
-      <VBox layoutX="218.0" layoutY="117.0" prefHeight="263.0" prefWidth="379.0">
+      <VBox fx:id="camposVBox" alignment="CENTER" layoutX="-6.0" layoutY="86.0" prefHeight="294.0" prefWidth="690.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="86.0">
          <children>
             <HBox prefHeight="54.0" prefWidth="379.0">
                <children>
@@ -19,11 +20,7 @@
                         <Font name="SansSerif Bold Italic" size="15.0" />
                      </font>
                   </Label>
-                  <PasswordField prefHeight="24.0" prefWidth="173.0" promptText="NOME COMPLETO">
-                     <font>
-                        <Font name="SansSerif Italic" size="13.0" />
-                     </font>
-                  </PasswordField>
+                  <TextField fx:id="nomeField" prefHeight="25.0" prefWidth="175.0" promptText="Nome completo" />
                </children>
             </HBox>
             <HBox layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="379.0">
@@ -33,11 +30,7 @@
                         <Font name="SansSerif Bold Italic" size="15.0" />
                      </font>
                   </Label>
-                  <PasswordField prefHeight="24.0" prefWidth="102.0">
-                     <font>
-                        <Font name="SansSerif Italic" size="13.0" />
-                     </font>
-                  </PasswordField>
+                  <TextField fx:id="idField" prefHeight="25.0" prefWidth="103.0" />
                </children>
             </HBox>
             <HBox layoutX="10.0" layoutY="163.0" prefHeight="49.0" prefWidth="374.0">
@@ -47,25 +40,22 @@
                         <Font name="SansSerif Bold Italic" size="15.0" />
                      </font>
                   </Label>
-                  <PasswordField>
-                     <font>
-                        <Font name="SansSerif Italic" size="13.0" />
-                     </font>
-                  </PasswordField>
+                  <PasswordField fx:id="senhaField" prefHeight="25.0" prefWidth="168.0" />
                </children>
             </HBox>
          </children>
       </VBox>
-      <Button layoutX="268.0" layoutY="395.0" mnemonicParsing="false" text="FINALIZAR CADASTRO">
+      <Button fx:id="cadastrarButton" layoutX="268.0" layoutY="395.0" mnemonicParsing="false" text="FINALIZAR CADASTRO" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="268.0" AnchorPane.rightAnchor="268.0">
          <font>
             <Font name="SansSerif Bold Italic" size="13.0" />
          </font>
       </Button>
-      <Label layoutX="273.0" layoutY="57.0" prefHeight="27.0" prefWidth="154.0" text="CADASTRO" textFill="#fffdfd">
+      <Label fx:id="tituloLabel" alignment="CENTER" layoutX="273.0" layoutY="57.0" prefHeight="27.0" prefWidth="154.0" text="CADASTRO DE " textFill="#fffdfd" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="57.0">
          <font>
             <Font name="SansSerif Bold Italic" size="24.0" />
          </font>
       </Label>
-      <Button layoutX="36.0" layoutY="494.0" mnemonicParsing="false" text="VOLTAR" />
+      <Button layoutX="36.0" layoutY="494.0" mnemonicParsing="false" text="VOLTAR" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="604.0" />
+      <VBox fx:id="planosVBox" alignment="TOP_CENTER" layoutX="418.0" layoutY="113.0" prefHeight="245.0" prefWidth="249.0" spacing="20.0" AnchorPane.bottomAnchor="104.0" AnchorPane.rightAnchor="33.0" AnchorPane.topAnchor="113.0" />
    </children>
 </AnchorPane>

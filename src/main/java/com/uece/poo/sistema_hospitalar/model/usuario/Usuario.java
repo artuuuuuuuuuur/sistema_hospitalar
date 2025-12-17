@@ -1,19 +1,14 @@
-package com.uece.poo.sistema_hospitalar.model;
+package com.uece.poo.sistema_hospitalar.model.usuario;
 
-public class Usuario {
+public abstract class Usuario {
     protected String nome;
-    protected String login;
+    protected String id;
     protected String senha;
     
-    public Usuario(String nome, String login, String senha) {
+    protected Usuario(String nome, String id, String senha) {
         this.nome = nome;
-        this.login = login;
+        this.id = id;
         this.senha = senha;
-    }
-
-    public Usuario(String login, String senha){
-        this.login=login;
-        this.senha=senha;
     }
 
     public String getNome() {
@@ -24,12 +19,12 @@ public class Usuario {
         this.nome = nome;
     }
 
-    public String getLogin() {
-        return login;
+    public String getId() {
+        return id;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getSenha() {
@@ -42,14 +37,14 @@ public class Usuario {
 
 
     public boolean autenticar(String login, String senha){
-        return this.login.equals(login) && this.senha.equals(senha);
+        return this.id.equals(login) && this.senha.equals(senha);
     }
 
     @Override
     public String toString() {
         return "Usuario{" +
                 ", nome='" + nome + '\'' +
-                ", login='" + login + '\'' +
+                ", login='" + id + '\'' +
                 '}';
     }
 }

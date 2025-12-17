@@ -4,14 +4,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.uece.poo.sistema_hospitalar.model.Medico;
-import com.uece.poo.sistema_hospitalar.model.Paciente;
+import com.uece.poo.sistema_hospitalar.model.usuario.Medico;
+import com.uece.poo.sistema_hospitalar.model.usuario.Paciente;
 import com.uece.poo.sistema_hospitalar.service.AvaliacaoService;
 import com.uece.poo.sistema_hospitalar.service.ConsultaService;
 import com.uece.poo.sistema_hospitalar.service.MedicoService;
 import com.uece.poo.sistema_hospitalar.service.PacienteService;
 
-public class Main {
+public class Test {
     public static void main(String[] args){
         MedicoService medicoService = new MedicoService();
         PacienteService pacienteService = new PacienteService();
