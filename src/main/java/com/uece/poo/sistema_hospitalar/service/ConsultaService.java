@@ -46,6 +46,7 @@
             List<String[]> dados = CSVUtil.ler(CONSULTAS);
             List<String> linhas = new ArrayList<>();
             Consulta espera = null;
+            linhas.add("MÉDICO,PACIENTE,DATA,STATUS");
             for(String[] l : dados){
                 if(l[0].equals(consulta.getMedico().getNome()) && l[1].equals(consulta.getPaciente().getNome()) && l[2].equals(consulta.getData().toString())){
                     continue;

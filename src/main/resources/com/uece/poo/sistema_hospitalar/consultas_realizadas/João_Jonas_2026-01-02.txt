@@ -1,0 +1,11 @@
+===== CONSULTA REALIZADA =====
+
+Médico: João
+Paciente: Jonas
+Data: 2026-01-02
+Status: REALIZADA
+
+Descrição da Consulta:
+aaaaa
+
+Valor da Consulta: R$ 0,00

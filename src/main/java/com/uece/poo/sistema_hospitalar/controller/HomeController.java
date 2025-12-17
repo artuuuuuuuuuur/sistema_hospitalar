@@ -5,15 +5,18 @@ import com.uece.poo.sistema_hospitalar.model.Consulta;
 import com.uece.poo.sistema_hospitalar.model.usuario.Medico;
 import com.uece.poo.sistema_hospitalar.model.usuario.Paciente;
 import com.uece.poo.sistema_hospitalar.model.usuario.Usuario;
+import com.uece.poo.sistema_hospitalar.service.AvaliacaoService;
 import com.uece.poo.sistema_hospitalar.service.ConsultaService;
 import com.uece.poo.sistema_hospitalar.service.MedicoService;
 import com.uece.poo.sistema_hospitalar.service.PacienteService;
 import com.uece.poo.sistema_hospitalar.util.CSVUtil;
 import com.uece.poo.sistema_hospitalar.util.ExceptionModal;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
@@ -24,6 +27,7 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -251,7 +255,7 @@ public class HomeController {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setTitle("Sucesso");
 
-        Label mensagem = new Label("Usuário atualizado com sucesso");
+        Label mensagem = new Label("Ação realizada com sucesso");
         mensagem.setStyle(
                 "-fx-font-size: 14px;" +
                         "-fx-font-weight: bold;" +
@@ -476,8 +480,6 @@ public class HomeController {
 
         Label medicoLabel = new Label("Médico: " + c.getMedico().getNome());
         Label pacienteLabel = new Label("Paciente: " + c.getPaciente().getNome());
-        Label planoLabel = new Label("Plano: " +
-                (c.getPaciente().temPlano() ? c.getPaciente().getPlanoSaude() : "Não possui"));
 
         TextArea descricaoArea = new TextArea();
         descricaoArea.setPromptText(
@@ -552,8 +554,6 @@ public class HomeController {
         };
     }
 
-
-
     private void atualizarConsultas() {
         consultasContainer.getChildren().clear();
 
@@ -588,25 +588,42 @@ public class HomeController {
         );
 
         Button cancelarButton = new Button("Cancelar");
+        cancelarButton.setDisable(!consulta.estaAgendada());
 
         cancelarButton.setOnAction(e -> {
             try {
-                new ConsultaService().cancelar(consulta);
-                atualizarConsultas(); // 🔥 atualiza após cancelamento
+                ConsultaService.cancelar(consulta);
+                atualizarConsultas();
             } catch (Exception ex) {
                 ExceptionModal.popUp(ex.getMessage());
             }
         });
 
-        HBox card = new HBox(10, info, cancelarButton);
+        HBox card = new HBox(10);
+        card.getChildren().addAll(info, cancelarButton);
 
-        // 👉 botão extra para médico
+        // ===============================
+        // BOTÃO DE AVALIAÇÃO (PACIENTE)
+        // ===============================
+        if (user instanceof Paciente && consulta.isRealizada()) {
+
+            Button avaliarButton = new Button("Avaliar Médico");
+
+            avaliarButton.setOnAction(e -> abrirModalAvaliacao(consulta));
+
+            card.getChildren().add(avaliarButton);
+        }
+
+        // ===============================
+        // BOTÃO REALIZAR (MÉDICO)
+        // ===============================
         if (user instanceof Medico && consulta.estaAgendada()) {
+
             Button realizarButton = new Button("Realizar");
 
             realizarButton.setOnAction(e -> {
                 abrirModalRealizarConsulta(consulta);
-                atualizarConsultas(); // 🔥 atualiza após realizar
+                atualizarConsultas();
             });
 
             card.getChildren().add(realizarButton);
@@ -616,10 +633,79 @@ public class HomeController {
         -fx-padding: 10;
         -fx-border-color: lightgray;
         -fx-border-radius: 5;
-        -fx-background-radius: 5;
     """);
 
         return card;
+    }
+
+    private void abrirModalAvaliacao(Consulta consulta) {
+
+        Stage stage = new Stage();
+        stage.setTitle("Avaliar Médico");
+        stage.initModality(Modality.APPLICATION_MODAL);
+
+        VBox root = new VBox(10);
+        root.setPadding(new Insets(15));
+        root.setAlignment(Pos.CENTER_LEFT);
+
+        Label medicoLabel = new Label(
+                "Médico: Dr. " + consulta.getMedico().getNome()
+        );
+        medicoLabel.setFont(Font.font(null, FontWeight.BOLD, 14));
+
+        // ===============================
+        // SELETOR DE ESTRELAS
+        // ===============================
+        ComboBox<Integer> estrelasCombo = new ComboBox<>();
+        estrelasCombo.getItems().addAll(1, 2, 3, 4, 5);
+        estrelasCombo.setValue(5);
+
+        Label estrelasLabel = new Label("Avaliação (1 a 5 estrelas):");
+
+        // ===============================
+        // COMENTÁRIO
+        // ===============================
+        TextArea comentarioArea = new TextArea();
+        comentarioArea.setPromptText("Escreva um comentário sobre a consulta...");
+        comentarioArea.setWrapText(true);
+
+        Button confirmarButton = new Button("Confirmar Avaliação");
+        Button cancelarButton = new Button("Cancelar");
+
+        confirmarButton.setOnAction(e -> {
+            try {
+                if (comentarioArea.getText().isBlank()) {
+                    ExceptionModal.popUp("O comentário não pode estar vazio.");
+                    return;
+                }
+
+                AvaliacaoService.avaliar(
+                        consulta.getMedico(),
+                        estrelasCombo.getValue(),
+                        comentarioArea.getText()
+                );
+
+                ExceptionModal.popUp("Avaliação registrada com sucesso!");
+                stage.close();
+
+            } catch (Exception ex) {
+                ExceptionModal.popUp("Erro ao salvar avaliação.");
+            }
+        });
+
+        cancelarButton.setOnAction(e -> stage.close());
+
+        root.getChildren().addAll(
+                medicoLabel,
+                estrelasLabel,
+                estrelasCombo,
+                comentarioArea,
+                new HBox(10, confirmarButton, cancelarButton)
+        );
+
+        stage.setScene(new Scene(root, 400, 350));
+        stage.setResizable(false);
+        stage.showAndWait();
     }
 
 
@@ -637,24 +723,32 @@ public class HomeController {
                             "\nValor: R$ " + c.getValor()
             );
 
-            Button cancelar = new Button("Desmarcar");
-            cancelar.setDisable(!c.estaAgendada());
+            card.getChildren().add(info);
 
-            cancelar.setOnAction(e -> {
-                try {
-                    ConsultaService.cancelar(c);
-                    ExceptionModal.popUp("Consulta cancelada.");
-                    root.getChildren().clear();
-                    montarTelaPaciente(root, consultas);
-                } catch (Exception ex) {
-                    ExceptionModal.popUp(ex.getMessage());
-                }
-            });
+            if (c.estaAgendada()) {
+                Button cancelar = new Button("Desmarcar");
+                cancelar.setOnAction(e -> {
+                    try {
+                        ConsultaService.cancelar(c);
+                        atualizarTelaConsultas(root);
+                    } catch (Exception ex) {
+                        ExceptionModal.popUp(ex.getMessage());
+                    }
+                });
+                card.getChildren().add(cancelar);
+            }
 
-            card.getChildren().addAll(info, cancelar);
+            // AVALIAÇÃO
+            if (c.isRealizada()) {
+                Button avaliar = new Button("Avaliar Médico");
+                avaliar.setOnAction(e -> abrirModalAvaliacao(c));
+                card.getChildren().add(avaliar);
+            }
+
             root.getChildren().add(card);
         }
     }
+
 
     private void atualizarTelaConsultas(VBox root) {
         root.getChildren().clear();
@@ -686,7 +780,12 @@ public class HomeController {
         return label;
     }
 
-
-
+    @FXML private void sair() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uece/poo/sistema_hospitalar/tela_de_inicio.fxml"));
+        Parent root = loader.load();
+        Stage stage = (Stage) opcoesVBox.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
 
 }

@@ -381,5 +381,11 @@ public class TelaDeCadastroController {
         stage.show();
     }
 
-
+    @FXML private void voltar() throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uece/poo/sistema_hospitalar/tela_de_inicio.fxml"));
+        Parent root = loader.load();
+        Stage stage = (Stage) tituloLabel.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
 }

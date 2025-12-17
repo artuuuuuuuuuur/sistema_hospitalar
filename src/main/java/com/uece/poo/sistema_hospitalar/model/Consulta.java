@@ -31,9 +31,6 @@ public class Consulta {
     }
 
     public void realizar(String descricao, double valorBase){
-        if(status != StatusConsulta.AGENDADA){
-            throw new IllegalStateException("Consulta não está agendada e não pode ser realizada");
-        }
         this.descricao=descricao;
 
         if(paciente.temPlano()){
@@ -47,9 +44,6 @@ public class Consulta {
     }
 
     public void cancelar(){
-        if(status == StatusConsulta.REALIZADA){
-            throw new IllegalStateException("Consulta realizada não pode ser cancelada");
-        }
         this.status = StatusConsulta.CANCELADA;
     }
 // funções de checagem de status

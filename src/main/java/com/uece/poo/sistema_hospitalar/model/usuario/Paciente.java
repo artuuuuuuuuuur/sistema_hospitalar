@@ -37,7 +37,7 @@ public class Paciente extends Usuario {
     }
 
     public boolean temPlano(){
-        return !planoSaude.equalsIgnoreCase("Não tenho");
+        return !planoSaude.equalsIgnoreCase("NÃO TENHO");
     }
 
     public void alterarDados(String nome, int idade, String planoSaude) {

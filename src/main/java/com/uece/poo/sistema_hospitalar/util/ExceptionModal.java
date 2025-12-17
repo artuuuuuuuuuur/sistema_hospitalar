@@ -17,10 +17,10 @@ public class ExceptionModal {
     public static void popUp(String msg) {
         Platform.runLater(() -> {
             Stage alerta = new Stage();
-            alerta.setTitle("Erro");
+            alerta.setTitle("Atenção!");
 
             Label message = new Label(msg);
-            message.setStyle("-fx-font-size: 16px; -fx-text-fill: red;");
+            message.setStyle("-fx-font-size: 16px; -fx-text-fill: black;");
 
             Button ok = new Button("OK");
             ok.setOnAction(e -> alerta.close());

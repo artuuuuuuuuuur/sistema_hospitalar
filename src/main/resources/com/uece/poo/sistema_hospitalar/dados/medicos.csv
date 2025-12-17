@@ -1,4 +1,4 @@
 NOME,ID,SENHA,ESPECIALIDADE,PLANOS
-João,45517,dudsid,Ortopedia,Normal|Ortodôntico
-Fernando,12345,fjndso,Cardiologia,Deluxe
-José,12534,shdsjo,Pediatria,Normal
+João,12345,1234,Odontologia,Plus|Normal
+Carlos,23456,1234,Cardiologia,Deluxe
+Fernando,34567,1234,Pediatria,Normal|Ortodôntico

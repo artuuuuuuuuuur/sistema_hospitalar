@@ -55,5 +55,6 @@
             <Font name="SansSerif Bold" size="14.0" />
          </font>
       </Button>
+      <Button layoutX="20.0" layoutY="21.0" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
    </children>
 </AnchorPane>

@@ -45,8 +45,9 @@ public class Avaliacao {
         this.texto = texto;
     }
 
-    public String toCSV(){
-        String estrelasString = Integer.toString(estrelas);
-        return medico.getNome()+","+estrelasString+","+texto;
+    public String toCSV() {
+        return medico.getNome() + "," +
+                estrelas + "," +
+                texto.replace(",", ";");
     }
 }

@@ -55,7 +55,7 @@
             <Font name="SansSerif Bold Italic" size="24.0" />
          </font>
       </Label>
-      <Button layoutX="36.0" layoutY="494.0" mnemonicParsing="false" text="VOLTAR" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="604.0" />
+      <Button layoutX="36.0" layoutY="494.0" mnemonicParsing="false" onAction="#voltar" text="VOLTAR" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="604.0" />
       <VBox fx:id="planosVBox" alignment="TOP_CENTER" layoutX="418.0" layoutY="113.0" prefHeight="245.0" prefWidth="249.0" spacing="20.0" AnchorPane.bottomAnchor="104.0" AnchorPane.rightAnchor="33.0" AnchorPane.topAnchor="113.0" />
    </children>
 </AnchorPane>
