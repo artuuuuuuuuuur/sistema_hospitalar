@@ -36,6 +36,7 @@ public class TelaDeCadastroController {
     @FXML private Button cadastrarButton;
     @FXML private AnchorPane cadastroAnchorPane;
     @FXML private VBox planosVBox;
+    @FXML private Label idLabel;
 
     private VBox listaDePlanosVBox;
     private boolean isMedico;
@@ -52,6 +53,7 @@ public class TelaDeCadastroController {
 
     private void renderizarTela() {
         tituloLabel.setText(tituloLabel.getText() + (isMedico ? "MÉDICO" : "PACIENTE"));
+        this.idLabel.setText(isMedico ? "CRM: " : "CPF: ");
         VBox camposVBox = (VBox) cadastroAnchorPane.lookup("#camposVBox");
         if (isMedico) {
             adicionarCamposDeMedico(camposVBox);

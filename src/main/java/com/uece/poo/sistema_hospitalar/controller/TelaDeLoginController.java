@@ -24,6 +24,7 @@ public class TelaDeLoginController {
     @FXML private PasswordField senhaPasswordField;
     @FXML private Button loginButton;
     @FXML private Button cadastroButton;
+    @FXML private Label idLabel;
 
     private boolean isMedico;
 
@@ -59,6 +60,7 @@ public class TelaDeLoginController {
 
     private void renderizarTela() {
         this.tituloLabel.setText(this.tituloLabel.getText() + (isMedico ? "MÉDICO" : "PACIENTE"));
+        this.idLabel.setText(isMedico ? "CRM: " : "CPF: ");
     }
 
     private void goToCadastro() throws IOException {
